@@ -87,3 +87,15 @@ class Comment(models.Model):
         return comments
     class Meta:
         ordering = ['comment']
+
+class Follow(models.Model):
+    user = models.ForeignKey(User,on_delete=models.CASCADE, null=True)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE, null=True)
+
+    @classmethod
+    def get_followers(cls, user):
+        followers = cls.objects.filter(user=user).all()
+        return followers
+
+    class Meta:
+        ordering = ['user']
