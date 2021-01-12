@@ -14,13 +14,13 @@ class Profile(models.Model):
         self.save()
 
     @classmethod
-    def get_profile(cls, user):
+    def get_profile(cls,user):
         profile = cls.objects.filter(user=user).first()
         return profile
 
     @classmethod
-    def get_profile_id(cls, user):
-        profile = cls.objects.get(pk =user)
+    def get_profile_id(cls,id):
+        profile = cls.objects.get(pk = id)
         return profile
 
     @classmethod
