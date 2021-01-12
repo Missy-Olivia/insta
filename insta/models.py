@@ -59,3 +59,31 @@ class Post(models.Model):
 
     class Meta:
         ordering = ['caption']
+
+class Comment(models.Model):
+    comment= models.CharField(max_length =240)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    post = models.ForeignKey(
+        'Post',
+        on_delete=models.CASCADE,
+        )
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    def __str__(self):
+        return self.user
+
+    def save_comment(self):
+        self.save()
+
+    def delete_comment(self):
+        self.delete()
+    
+    @classmethod
+    def update_post(cls, id ,comment):
+        update = cls.objects.filter(id = id).update(comment = comment)
+    
+    @classmethod
+    def get_comments_by_post(cls, id):
+        comments = Comment.objects.filter(post__pk = id)
+        return comments
+    class Meta:
+        ordering = ['comment']
