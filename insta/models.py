@@ -30,3 +30,32 @@ class Profile(models.Model):
 
     class Meta:
         ordering = ['user']
+
+class Post(models.Model):
+    post_image = models.ImageField(upload_to = 'posts/')
+    caption = models.CharField(max_length =240)
+    location = models.CharField(max_length =30)
+    date_posted = models.DateTimeField(auto_now_add=True)
+    user = models.ForeignKey(User,on_delete=models.CASCADE)
+    profile = models.ForeignKey(Profile,on_delete=models.CASCADE,null = True)
+    like = models.IntegerField(default=0)
+    def __str__(self):
+        return self.caption
+
+    def save_post(self):
+        self.save()
+
+    def delete_post(self):
+        self.delete()
+    
+    @classmethod
+    def update_post(cls,id):
+        update = cls.objects.filter(id = id).update(caption = caption)
+    
+    @classmethod
+    def get_posts_by_id(cls, id):
+        posts = cls.objects.filter(profile = id).all()
+        return posts
+
+    class Meta:
+        ordering = ['caption']
