@@ -190,3 +190,29 @@ def search_results(request):
     else:
         message = "You haven't searched for any term"
         return render(request, 'search.html',{"message":message})
+
+@login_required(login_url='/accounts/login/')
+def profile(request, profile_id):
+    profile = Profile.get_profile_id(profile_id)
+    posts = Post.objects.filter(profile=profile.id).order_by('-date_posted')
+    count = Post.objects.filter(profile=profile).count
+    comments = Comment.objects.all().order_by('-date_posted')
+    for post in posts:
+        if request.method=='POST' and 'post' in request.POST:
+            posted=request.POST.get("post")
+            for post in posts:
+                if (int(post.id)==int(posted)):
+                    post.like+=1
+                    post.save()
+            return redirect('profile', profile_id=profile_id)
+    return render(request, 'user_profile.html', {"posts": posts, "profile": profile, 'count':count,'comments':comments})
+
+
+@login_required(login_url='/accounts/login/')
+def follow(request, profile_id):
+    current_user = request.user
+    profile = Profile.get_profile_id(profile_id)
+    follow_user = Follow(user=current_user, profile=profile)
+    follow_user.save()
+    myprofile_id= str(profile.id)
+    return redirect('insta')
