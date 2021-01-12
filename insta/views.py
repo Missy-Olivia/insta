@@ -4,7 +4,7 @@ import datetime as dt
 from .models import Profile, Post, Comment, Follow
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
-
+from .forms import ProfileForm, PostForm, CommentForm
 # Create your views here.
 def signup(request):
     if request.user.is_authenticated():
