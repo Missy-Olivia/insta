@@ -1,0 +1,54 @@
+{%extends "registration/base.html"%}
+{% load bootstrap3 %}
+{% block content %}
+<style>
+  body{
+    background-image:url(https://lh3.googleusercontent.com/proxy/_uSJkxZ3_qhMj73lr3n1MMzJYMqRl9XsSYxD6p3rNE4s-4-xYT0S2iIkifean8T2mGQZIHF_9BasCiN2vywqqpJZuJ558ZXEkycI49ERvf6reU2bv__9n6AzgV1uy_GEf4Wn8TNAWaIGbvk0Dq1ohKuZ);
+    background-size:cover;
+    background-repeat:no-repeat;
+    font-family: 'Vollkorn', serif;
+    height:100vh;
+  }
+  
+  .col-md-7{
+    margin-top:20vh;
+  }
+</style>
+<div class="container-fluid">
+  <div class="row">
+    <div class='col-md-3' id='login'></div>
+    <div class='col-md-7'>
+    <div class="col-md-10">
+      {% if form.errors %}
+        <p> Password or Username is incorrect </p>
+      {% endif %}
+      <div class="panel panel-default">
+
+        <div class="panel-heading">
+          <h3 class="text-center">Instagram</h3>
+        </div>
+        <div class="panel-body">
+
+          <form  action="/accounts/login/" method="post">
+            {% csrf_token %}
+            {% bootstrap_form form%}
+
+            <div class="form-group">
+              <input type="submit" class="btn btn-primary btn-sm" value="Login">
+            </div>
+
+            <input type="hidden" name="next" value="{{next}}">
+
+          </form>
+          <div>Don't have an account?<a href="/accounts/register">Sign Up</a></div>
+        </div>
+
+      </div>
+      <p class='text-muted small'>&copy; 2021 | InstaClone</p>
+    </div>
+    <!-- empty div -->
+    <div class="col-md-4"></div></div>
+  </div>
+</div>
+
+{% endblock %}
