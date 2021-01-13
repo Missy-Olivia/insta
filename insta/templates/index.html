@@ -65,7 +65,7 @@ td{
         <div class="row">
             {% if my_profile %}
             <div class='col-md-3'><img class="img-fluid rounded-circle " src="{{my_profile.profile_photo.url}}" style="height:70px;width:70px;margin-top:5px;margin-bottom:5px; border-radius:50%;"></div>
-            <div class='col-md-3'><br><span><b style="padding-right: 30px;">{{my_profile.user.username}}</b><a href="#"><b><small>Switch</small></b></a></div>
+            <div class='col-md-3'><br><span><b style="padding-right: 30px;">{{my_profile.user.username}}</b><a href="/logout"><b><small>Switch</small></b></a></div>
             </span><br>
             {% else %}
             <div class='col-md-3'><a href="{% url 'add_profile' %}" class='btn btn-info' style='background-color:rgb(205, 57, 241);border:none;'>Add profile</a></div>
