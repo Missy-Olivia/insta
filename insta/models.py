@@ -19,9 +19,10 @@ class Profile(models.Model):
         return profile
 
     @classmethod
-    def get_profile_id(cls,id):
-        profile = cls.objects.get(pk = id)
+    def get_profile_id(cls, user):
+        profile = cls.objects.get(pk =user)
         return profile
+
 
     @classmethod
     def find_profile(cls,search_term):
