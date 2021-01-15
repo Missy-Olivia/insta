@@ -78,7 +78,7 @@ td{
                 {% if user != request.user and user.profile %}
                 <tr>
                     <th><span>
-                        <img class="img-fluid rounded-circle " height="40" width="40" src="{{ post.profile.profile_photo.url }}" id="img" alt="{{ post.user }}">   
+                        <img class="img-fluid rounded-circle " height="50" width="50" src="{{post.profile.profile_photo.url }}" id="img" alt="{{ post.user }}">   
                         <a href="/profile/{{user.profile.id}}" style='text-decoration: none; color:black'>{{user.username}}</span></a>
                     </th>
                     <td><a href="{%url 'follow' user.id %}"><b>Follow</b></a></td>
