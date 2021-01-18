@@ -68,7 +68,7 @@ td{
             <div class='col-md-3'><br><span><b style="padding-right: 30px;">{{my_profile.user.username}}</b><a href="/logout"><b><small>Switch</small></b></a></div>
             </span><br>
             {% else %}
-            <div class='col-md-3'><a href="{% url 'add_profile' %}" class='btn btn-info' style='background-color:rgb(205, 57, 241);border:none;'>Add profile</a></div>
+            <div class='col-md-3'><a href="{% url 'add_profile' %}" class='btn btn-info' style='background-color: rgba(247, 120, 204, 0.267);border:none;'><i class="fas fa-plus"></i>Add profile</a></div>
             {% endif %}
         </div><br>
         <h5><b>Suggestions for you</b></h5><br>
@@ -77,8 +77,8 @@ td{
                 {% for user in users %}
                 {% if user != request.user and user.profile %}
                 <tr>
-                    <th><span>
-                        <img class="img-fluid rounded-circle " height="50" width="50" src="{{post.profile.profile_photo.url }}" id="img" alt="{{ post.user }}">   
+                    <th>
+                        <img class="img-fluid rounded-circle " src="{{user.profile.profile_photo.url}}" style="height:40px;width:40px;margin-top:5px;margin-bottom:5px; border-radius:50%;"></div>
                         <a href="/profile/{{user.profile.id}}" style='text-decoration: none; color:black'>{{user.username}}</span></a>
                     </th>
                     <td><a href="{%url 'follow' user.id %}"><b>Follow</b></a></td>

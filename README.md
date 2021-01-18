@@ -2,7 +2,7 @@
 
 
 
-# PhotoGallery
+# Instaclone
 
 ###  PROJECT DESCRIPTION
 

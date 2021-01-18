@@ -1,7 +1,10 @@
 {%extends "registration/base.html"%} {% load bootstrap3 %}
 {% block content %}
 <style>
- 
+ body{
+  background-color: rgba(241, 106, 196, 0.418)
+
+ }
   .col-md-6{
     border-radius:20px;
     margin:10px;
@@ -21,8 +24,8 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center" style="font-family: 'Dancing Script', cursive;">Instagram</h3>
-          <h3 class="text-muted text-center">Sign up to see photos and videos from your friends.</h3>
+          <h3 class="text-center" style="font-family: 'Dancing Script', cursive;"><i class="fab fa-instagram"></i><b>Instagram</b></h3>
+          <h3 class="text-muted text-center small"><i><b>Sign up to see photos and videos from your friends!</b></i></h3>
 
         </div>
         <div class="panel-body">
@@ -48,7 +51,7 @@
 
     <div class="col-md-4"></div>
   </div>
-  <p class='text-muted small'>&copy; 2021 | InstaClone</p>
+  <p class='text-muted small' style="text-align: center;">&copy; 2021 | InstaClone</p>
 </div>
 
 {% endblock %}

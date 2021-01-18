@@ -26,6 +26,8 @@ def insta(request):
     users = User.objects.all()
     current_user = request.user
     profile = Profile.objects.filter(user=current_user).first()
+    comments = Comment.objects.all().order_by('-date_posted')
+    posts = Post.objects.all().order_by('-date_posted')
     if profile == None:
         my_profile = None
     else:
@@ -95,6 +97,23 @@ def my_profile(request):
     count = Post.objects.filter(profile=profile).count
     comments = Comment.objects.all().order_by('-date_posted')
     posts = None
+    if profile == None:
+        return redirect('add_profile')
+    else:
+        posts = Post.get_posts_by_id(profile.id).order_by('-date_posted')
+        for post in posts:
+            if request.method=='POST' and 'post' in request.POST:
+                posted=request.POST.get("post")
+                for post in posts:
+                    if (int(post.id)==int(posted)):
+                        post.like+=1
+                        post.save()
+                return redirect('profile', profile_id=profile_id)
+    return render(request, 'profile.html', {"posts": posts, "profile": profile, 'count':count,'comments':comments})
+@login_required(login_url='/accounts/login/')
+def our_profile(request):
+    our_user = request.user
+    profile = Profile.objects.get(user=our_user)
     if profile == None:
         return redirect('add_profile')
     else:
